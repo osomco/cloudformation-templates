@@ -18,8 +18,13 @@
         "CNAMETARGET": {
             "Description": "-",
             "Type": "String"
+        },
+
+        "BLOGFQDN": {
+            "Description": "Fully Qualified Domain Name for your blog.",
+            "Type": "String",
+            "Default": "blog.domain.com"
         }
-        
         
     },
 
@@ -28,7 +33,7 @@
         "blogAlias": {
             "Type": "AWS::Route53::RecordSet",
             "Properties": {
-                "Name": "blog.osomco.com",
+                "Name": {"Ref": "BLOGFQDN"},
                 "Type": "A",
                 "Comment": "",
                 "HostedZoneId": {"Ref": "HZID"},
@@ -53,11 +58,11 @@
     "blogCNAME": {
         "Type": "AWS::Route53::RecordSet",
         "Properties": {
-            "Name": "34205a804095618cb240c94287e256dd.blog.osomco.com",
+            "Name": {"Ref": "CNAMEHOST"},
             "Type": "CNAME",
             "Comment": "",
             "HostedZoneId": {"Ref": "HZID"},
-            "ResourceRecords": [ "855a91b5ef2d17673e9d6a5c42cd5a8c63a95256.comodoca.com" ],
+            "ResourceRecords": [ {"Ref": "CNAMETARGET"} ],
             "TTL": "900"
         }
     }
