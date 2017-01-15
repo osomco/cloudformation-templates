@@ -1,7 +1,7 @@
 
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "DNS Records para blog.osomco.com",
+    "Description": "Plantilla Cloudformation para records DNS de Medium",
 
     "Parameters": {
         
