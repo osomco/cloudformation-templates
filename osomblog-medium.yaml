@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Records DNS para Medium '
+Parameters:
+    HZID:
+        Description: HostedZone ID donde se agregaran los records
+        Type: 'AWS::Route53::HostedZone::Id'
+    CNAMEHOST:
+        Description: '-'
+        Type: String
+    CNAMETARGET:
+        Description: '-'
+        Type: String
+    BLOGFQDN:
+        Description: Fully Qualified Domain Name for your blog.
+        Type: String
+        Default: blog.domain.com
+Metadata: {}
+Resources:
+    blogAlias:
+        Type: 'AWS::Route53::RecordSet'
+        Properties:
+            Name:
+                Ref: BLOGFQDN
+            Type: A
+            Comment: ''
+            HostedZoneId:
+                Ref: HZID
+            ResourceRecords:
+                - 52.0.16.118
+                - 52.1.119.170
+                - 52.1.147.205
+                - 52.1.173.203
+                - 52.4.145.119
+                - 52.4.175.111
+                - 52.4.225.124
+                - 52.4.240.221
+                - 52.4.38.70
+                - 52.5.181.79
+                - 52.6.3.192
+                - 52.6.46.142
+            TTL: '900'
+    blogCNAME:
+        Type: 'AWS::Route53::RecordSet'
+        Properties:
+            Name:
+                Ref: CNAMEHOST
+            Type: CNAME
+            Comment: ''
+            HostedZoneId:
+                Ref: HZID
+            ResourceRecords:
+                - 
+                    Ref: CNAMETARGET
+            TTL: '900'
+Outputs: {}
